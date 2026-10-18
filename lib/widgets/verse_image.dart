@@ -8,6 +8,7 @@ import 'package:gal/gal.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
+import '../services/rate_prompt.dart';
 
 import '../data/app_theme.dart';
 import '../data/models.dart';
@@ -128,6 +129,7 @@ Future<void> shareVerseImage(GlobalKey key) async {
       '${dir.path}/mensagem_${DateTime.now().millisecondsSinceEpoch}.png');
   await file.writeAsBytes(bytes);
   await Share.shareXFiles([XFile(file.path)]);
+  await RatePrompt.registerPositiveAction();
 }
 
 /// Gradientes PAIXÃO/FOGO para o card compartilhável.
